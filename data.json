@@ -1,8 +1,82 @@
 {
   "lastUpdated": "May 17, 2026",
-  "totalPlaces": 1,
-  "totalPhotos": 9,
+  "totalPlaces": 2,
+  "totalPhotos": 18,
   "places": [
+    {
+      "name": "München",
+      "region": "Bavaria · Germany",
+      "tagline": "Geometry of light & shadow",
+      "subtitle": "& the art of the street",
+      "coords": "48°8'13\"N  11°34'31\"E",
+      "storyTitle": "Frames from the Heart of Bavaria.",
+      "story": [
+        "Mapping the geometry of München. Where the light cuts through the dark to reveal stories in stone, wood, and skin. Not just a city, but a gallery of fleeting moments. 🎞️🍂"
+      ],
+      "camera": "Fujifilm X · Classic Chrome",
+      "season": "Spring 2026",
+      "theme": "Street",
+      "instagramUrl": "https://www.instagram.com/p/DW1IATMiIVZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "order": 1,
+      "heroPhoto": "https://drive.google.com/thumbnail?id=1sAyIQgyfkyfjsIpyQHJwU6FABOoVvMNO&sz=w1200",
+      "photos": [
+        {
+          "url": "https://drive.google.com/thumbnail?id=1FkK2fwEu7Oq8jfdFPg0hUhz8baak_3YA&sz=w1200",
+          "caption": "01 pic",
+          "fileId": "1FkK2fwEu7Oq8jfdFPg0hUhz8baak_3YA",
+          "name": "01-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=1ZNWrCI10Eai46CSl2njpRoKO0l_W6G7-&sz=w1200",
+          "caption": "02 pic",
+          "fileId": "1ZNWrCI10Eai46CSl2njpRoKO0l_W6G7-",
+          "name": "02-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=1uk_c0ZG85_9fbcatYCxtaKaRieSWVwAb&sz=w1200",
+          "caption": "03 pic",
+          "fileId": "1uk_c0ZG85_9fbcatYCxtaKaRieSWVwAb",
+          "name": "03-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=18xDiWXisrcmeNAl4k7zo7YsLmavYLuJz&sz=w1200",
+          "caption": "04 pic",
+          "fileId": "18xDiWXisrcmeNAl4k7zo7YsLmavYLuJz",
+          "name": "04-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=1AFKfziYQOiGxfbB379TSD5xIMm4-TC2T&sz=w1200",
+          "caption": "05 pic",
+          "fileId": "1AFKfziYQOiGxfbB379TSD5xIMm4-TC2T",
+          "name": "05-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=1VmDxOMXNHlNOVDGwiepNZ54dEEZQasli&sz=w1200",
+          "caption": "06 pic",
+          "fileId": "1VmDxOMXNHlNOVDGwiepNZ54dEEZQasli",
+          "name": "06-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=168ph0b5GruUUYEP-dKaAsrrsrJU519GT&sz=w1200",
+          "caption": "07 pic",
+          "fileId": "168ph0b5GruUUYEP-dKaAsrrsrJU519GT",
+          "name": "07-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=1n1RLMmv46HsixVr9aTY765NkhK16ffi9&sz=w1200",
+          "caption": "08 pic",
+          "fileId": "1n1RLMmv46HsixVr9aTY765NkhK16ffi9",
+          "name": "08-pic.jpg"
+        },
+        {
+          "url": "https://drive.google.com/thumbnail?id=100YRlsvoeDxdY3i-dJrc2LiAkvpfnV2d&sz=w1200",
+          "caption": "09 pic",
+          "fileId": "100YRlsvoeDxdY3i-dJrc2LiAkvpfnV2d",
+          "name": "09-pic.jpg"
+        }
+      ],
+      "_photoCount": 9
+    },
     {
       "name": "Rügen",
       "region": "Baltic Sea · Germany",
