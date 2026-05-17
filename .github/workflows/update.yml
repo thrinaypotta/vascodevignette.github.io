@@ -1,0 +1,52 @@
+name: Rebuild portfolio from Google Drive
+
+on:
+  # Run every day at 6am UTC — picks up any Drive changes overnight
+  schedule:
+    - cron: '0 6 * * *'
+
+  # Also run whenever you push to main (e.g. update HTML/CSS)
+  push:
+    branches: [ main ]
+
+  # Allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install \
+            google-auth \
+            google-auth-oauthlib \
+            google-auth-httplib2 \
+            google-api-python-client
+
+      - name: Build data.json from Google Drive
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          python scripts/build.py
+
+      - name: Commit and push data.json if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "No changes to data.json — skipping commit"
+          else
+            git commit -m "🔄 Auto-update portfolio data from Google Drive [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push
+          fi
