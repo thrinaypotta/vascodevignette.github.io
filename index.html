@@ -18,143 +18,171 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', serif; cursor: none; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', serif; }
 
-  .cursor { position: fixed; width: 8px; height: 8px; background: var(--warm); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
-  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--warm); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.15s ease; opacity: 0.5; }
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--warm); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); display: none; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--warm); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.15s ease; opacity: 0.5; display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    .cursor, .cursor-ring { display: block; }
+  }
 
-  /* ── NAV ── */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 60px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
-  .nav-logo { text-decoration: none; display: flex; align-items: center; }
-  .nav-logo img { height: 42px; width: 42px; border-radius: 50%; object-fit: cover; transition: opacity 0.3s; }
-  .nav-logo img:hover { opacity: 0.8; }
-
-  /* Dropdown */
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+  .nav-logo { text-decoration: none; }
+  .nav-logo img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; display: block; }
   .nav-dropdown-wrap { position: relative; }
-  .nav-dropdown-btn {
-    background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(245,240,232,0.7);
-    font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 2px;
-    text-transform: uppercase; padding: 8px 18px; cursor: pointer;
-    transition: all 0.2s; display: flex; align-items: center; gap: 8px;
-  }
-  .nav-dropdown-btn:hover { border-color: var(--warm); color: var(--warm); }
-  .nav-dropdown-btn .arrow { transition: transform 0.2s; display: inline-block; }
+  .nav-dropdown-btn { background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(245,240,232,0.8); font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 7px 14px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .nav-dropdown-btn .arrow { transition: transform 0.2s; font-size: 9px; }
   .nav-dropdown-btn.open .arrow { transform: rotate(180deg); }
-  .nav-dropdown-menu {
-    display: none; position: absolute; top: calc(100% + 8px); right: 0;
-    background: rgba(10,8,6,0.97); border: 1px solid #2a2520;
-    list-style: none; min-width: 220px; max-height: 70vh; overflow-y: auto;
-    backdrop-filter: blur(12px);
-  }
+  .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); right: 0; background: rgba(10,8,6,0.98); border: 1px solid #2a2520; list-style: none; min-width: 200px; max-height: 60vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .nav-dropdown-menu.open { display: block; animation: fadeDown 0.2s ease; }
-  .nav-dropdown-menu li a {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 13px 20px;
-    font-family: 'Courier Prime', monospace; font-size: 11px;
-    letter-spacing: 2px; color: var(--muted); text-decoration: none;
-    text-transform: uppercase; border-bottom: 1px solid #1a1714;
-    transition: all 0.2s;
-  }
+  .nav-dropdown-menu li a { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 2px; color: var(--muted); text-decoration: none; text-transform: uppercase; border-bottom: 1px solid #1a1714; -webkit-tap-highlight-color: transparent; }
   .nav-dropdown-menu li:last-child a { border-bottom: none; }
-  .nav-dropdown-menu li a:hover { color: var(--warm); padding-left: 26px; background: #111; }
-  .nav-dropdown-menu li a .item-num { font-size: 9px; color: #333; }
-  .nav-dropdown-menu li a:hover .item-num { color: var(--warm); opacity: 0.5; }
+  .nav-dropdown-menu li a:active, .nav-dropdown-menu li a:hover { background: #1a1410; color: var(--warm); }
+  .item-num { font-size: 9px; color: #333; }
 
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* ── HERO ── */
-  .hero { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 60px; position: relative; background: var(--dark); overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, #2a1f0e 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, #0d1a2a 0%, transparent 50%), var(--dark); }
-  .hero-label { font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 24px; opacity: 0; animation: fadeUp 1s 0.3s forwards; position: relative; }
-  .hero-title { font-size: clamp(52px, 8vw, 110px); font-weight: 300; color: #f5f0e8; line-height: 0.95; letter-spacing: -2px; opacity: 0; animation: fadeUp 1s 0.6s forwards; position: relative; }
+  /* HERO */
+  .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 24px 44px; position: relative; background: var(--dark); overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, #2a1f0e 0%, transparent 55%), radial-gradient(ellipse at 80% 10%, #0d1a2a 0%, transparent 50%), var(--dark); }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-label { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; margin-bottom: 16px; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
+  .hero-title { font-size: clamp(42px, 12vw, 110px); font-weight: 300; color: #f5f0e8; line-height: 0.95; letter-spacing: -1px; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
   .hero-title em { font-style: italic; color: var(--warm); }
-  .hero-sub { font-family: 'Courier Prime', monospace; font-size: 12px; color: var(--muted); letter-spacing: 2px; margin-top: 32px; opacity: 0; animation: fadeUp 1s 0.9s forwards; position: relative; }
-  .hero-scroll { position: absolute; right: 60px; bottom: 60px; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
-  .hero-scroll span { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 3px; color: var(--muted); writing-mode: vertical-rl; text-transform: uppercase; }
-  .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--warm), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  .hero-sub { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-top: 20px; line-height: 1.6; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
+  .hero-scroll { position: absolute; right: 20px; bottom: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
+  .hero-scroll span { font-family: 'Courier Prime', monospace; font-size: 8px; letter-spacing: 3px; color: var(--muted); writing-mode: vertical-rl; text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--warm), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 
-  /* ── INDEX ── */
-  .places-index { padding: 80px 60px; background: var(--paper); border-bottom: 1px solid var(--faint); }
-  .section-label { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 40px; }
-  #index-grid { display: flex; flex-wrap: wrap; gap: 2px; }
-  .index-item { padding: 28px 20px; border: 1px solid var(--faint); cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; position: relative; overflow: hidden; flex: 1; min-width: 160px; }
-  .index-item::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--warm); transform: scaleX(0); transition: transform 0.3s; }
-  .index-item:hover::before { transform: scaleX(1); }
-  .index-item:hover { background: var(--faint); }
-  .index-num { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--warm); letter-spacing: 2px; display: block; margin-bottom: 12px; }
-  .index-name { font-size: 22px; font-weight: 300; color: var(--ink); display: block; line-height: 1.2; }
-  .index-region { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--muted); display: block; margin-top: 8px; letter-spacing: 1px; }
+  /* INDEX */
+  .places-index { padding: 40px 20px; background: var(--paper); border-bottom: 1px solid var(--faint); }
+  .section-label { font-family: 'Courier Prime', monospace; font-size: 9px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 20px; }
+  #index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .index-item { padding: 18px 14px; border: 1px solid var(--faint); text-decoration: none; display: block; -webkit-tap-highlight-color: transparent; transition: background 0.2s; }
+  .index-item:active { background: var(--faint); }
+  .index-num { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--warm); letter-spacing: 2px; display: block; margin-bottom: 8px; }
+  .index-name { font-size: 17px; font-weight: 300; color: var(--ink); display: block; line-height: 1.2; }
+  .index-region { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--muted); display: block; margin-top: 6px; letter-spacing: 0.5px; line-height: 1.4; }
 
-  /* ── PLACE SECTIONS ── */
-  .place { min-height: 100vh; }
-  .place-hero { height: 65vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; background: var(--dark); }
-  .place-hero-bg-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 240px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.04); letter-spacing: -20px; user-select: none; line-height: 1; }
-  .place-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.45; }
-  .place-hero-content { position: relative; z-index: 2; padding: 60px; width: 100%; }
-  .place-tag { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; display: block; margin-bottom: 16px; }
-  .place-name { font-size: clamp(42px, 6vw, 88px); font-weight: 300; color: #f5f0e8; line-height: 0.95; letter-spacing: -2px; }
+  /* PLACE */
+  .place { }
+  .place-hero { height: 52vmax; min-height: 240px; max-height: 460px; position: relative; overflow: hidden; display: flex; align-items: flex-end; background: var(--dark); }
+  .place-hero-bg-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: min(42vw, 200px); font-weight: 300; font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.04); letter-spacing: -8px; user-select: none; }
+  .place-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.5; }
+  .place-hero-content { position: relative; z-index: 2; padding: 20px 24px; width: 100%; }
+  .place-tag { font-family: 'Courier Prime', monospace; font-size: 9px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .place-name { font-size: clamp(28px, 7.5vw, 72px); font-weight: 300; color: #f5f0e8; line-height: 1; letter-spacing: -0.5px; }
   .place-name em { font-style: italic; opacity: 0.6; }
-  .place-coords { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); margin-top: 16px; letter-spacing: 2px; }
+  .place-coords { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--muted); margin-top: 8px; letter-spacing: 1px; }
 
-  .place-body { display: grid; grid-template-columns: 1fr 1fr; }
-  .place-story { padding: 72px 60px; background: var(--paper); display: flex; flex-direction: column; justify-content: center; }
-  .story-number { font-family: 'Courier Prime', monospace; font-size: 64px; color: var(--faint); line-height: 1; margin-bottom: -10px; }
-  .story-title { font-size: 28px; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 20px; line-height: 1.3; }
-  .story-text { font-size: 17px; font-weight: 300; line-height: 1.85; color: #3a3530; max-width: 460px; }
-  .story-text + .story-text { margin-top: 14px; }
-  .story-detail { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--faint); display: flex; gap: 36px; flex-wrap: wrap; }
+  /* Mobile: stacked layout, story first then photos */
+  .place-body { display: flex; flex-direction: column; }
+  .place-story { padding: 32px 24px; background: var(--paper); display: flex; flex-direction: column; order: 1; }
+  .story-number { font-family: 'Courier Prime', monospace; font-size: 44px; color: var(--faint); line-height: 1; margin-bottom: -4px; }
+  .story-title { font-size: 21px; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 14px; line-height: 1.3; }
+  .story-text { font-size: 16px; font-weight: 300; line-height: 1.8; color: #3a3530; }
+  .story-text + .story-text { margin-top: 12px; }
+  .story-detail { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--faint); display: flex; gap: 20px; flex-wrap: wrap; }
   .detail-item { display: flex; flex-direction: column; gap: 4px; }
-  .detail-label { font-family: 'Courier Prime', monospace; font-size: 9px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; }
-  .detail-value { font-size: 14px; font-weight: 300; color: var(--ink); }
+  .detail-label { font-family: 'Courier Prime', monospace; font-size: 8px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; }
+  .detail-value { font-size: 13px; font-weight: 300; color: var(--ink); }
 
-  .photo-gallery { background: #111; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-  .gallery-img { aspect-ratio: 4/3; overflow: hidden; position: relative; background: #1a1a1a; cursor: pointer; }
-  .gallery-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, opacity 0.3s; opacity: 0.85; }
-  .gallery-img:hover img { transform: scale(1.04); opacity: 1; }
-  .gallery-img-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); font-family: 'Courier Prime', monospace; font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; }
-  .gallery-img:hover .gallery-img-caption { opacity: 1; }
-  .gallery-placeholder { aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a2a, #2a1a1a); display: flex; align-items: center; justify-content: center; }
-  .gallery-placeholder span { font-family: 'Courier Prime', monospace; font-size: 10px; color: #333; letter-spacing: 2px; }
+  .photo-gallery { background: #111; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; order: 2; }
+  .gallery-img { aspect-ratio: 1/1; overflow: hidden; position: relative; background: #1a1a1a; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .gallery-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: transform 0.4s; }
+  .gallery-img:active img { transform: scale(1.03); }
+  .gallery-img-caption { display: none; }
+  .gallery-placeholder { aspect-ratio: 1/1; background: linear-gradient(135deg, #1a1a2a, #2a1a1a); display: flex; align-items: center; justify-content: center; }
+  .gallery-placeholder span { font-family: 'Courier Prime', monospace; font-size: 9px; color: #333; letter-spacing: 2px; }
 
-  .place-ig-link { padding: 20px 60px; background: var(--faint); display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #ddd8cc; }
-  .ig-text { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); letter-spacing: 2px; }
-  .ig-link { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--warm); letter-spacing: 2px; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: gap 0.3s; }
-  .ig-link:hover { gap: 14px; }
+  .place-ig-link { padding: 14px 24px; background: var(--faint); display: flex; align-items: center; justify-content: space-between; order: 3; }
+  .ig-text { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1px; }
+  .ig-link { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--warm); letter-spacing: 1px; text-decoration: none; }
   .place-divider { height: 2px; background: linear-gradient(to right, transparent, var(--warm), transparent); opacity: 0.25; }
 
-  /* ── LIGHTBOX ── */
-  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; }
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 1000; align-items: center; justify-content: center; }
   .lightbox.open { display: flex; }
-  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
-  .lightbox-close { position: absolute; top: 24px; right: 32px; color: white; font-size: 32px; cursor: pointer; font-family: 'Courier Prime', monospace; opacity: 0.6; transition: opacity 0.2s; }
-  .lightbox-close:hover { opacity: 1; }
-  .lightbox-caption { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-family: 'Courier Prime', monospace; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
+  .lightbox img { max-width: 100vw; max-height: 100vh; object-fit: contain; }
+  .lightbox-close { position: absolute; top: 12px; right: 16px; color: white; font-size: 40px; cursor: pointer; opacity: 0.7; padding: 8px; line-height: 1; }
 
-  /* ── FOOTER ── */
-  footer { background: var(--dark); padding: 80px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
-  .footer-left h2 { font-size: 44px; font-weight: 300; color: #f5f0e8; font-style: italic; line-height: 1.1; margin-bottom: 16px; }
-  .footer-left p { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); letter-spacing: 2px; }
-  .footer-right { text-align: right; }
-  .footer-ig { font-size: 20px; font-weight: 300; color: var(--warm); text-decoration: none; display: block; margin-bottom: 8px; }
-  .footer-copy { font-family: 'Courier Prime', monospace; font-size: 10px; color: #3a3530; letter-spacing: 2px; }
-  .last-updated { font-family: 'Courier Prime', monospace; font-size: 10px; color: #2a2520; letter-spacing: 2px; margin-top: 8px; }
+  /* FOOTER */
+  footer { background: var(--dark); padding: 44px 24px; }
+  .footer-left { margin-bottom: 28px; }
+  .footer-left h2 { font-size: 32px; font-weight: 300; color: #f5f0e8; font-style: italic; line-height: 1.1; margin-bottom: 10px; }
+  .footer-left p { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--muted); letter-spacing: 2px; }
+  .footer-ig { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; color: var(--warm); text-decoration: none; display: block; margin-bottom: 6px; }
+  .footer-copy { font-family: 'Courier Prime', monospace; font-size: 9px; color: #3a3530; letter-spacing: 2px; }
+  .last-updated { font-family: 'Courier Prime', monospace; font-size: 9px; color: #2a2520; letter-spacing: 1px; margin-top: 6px; }
 
-  .loading { text-align: center; padding: 120px 60px; font-family: 'Courier Prime', monospace; font-size: 12px; color: var(--muted); letter-spacing: 4px; }
-  .error-msg { text-align: center; padding: 60px; font-family: 'Courier Prime', monospace; font-size: 12px; color: #c96e6e; letter-spacing: 2px; }
+  .loading { text-align: center; padding: 60px 20px; font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); letter-spacing: 3px; }
+  .error-msg { text-align: center; padding: 40px 20px; font-family: 'Courier Prime', monospace; font-size: 11px; color: #c96e6e; }
 
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-  @media (max-width: 768px) {
-    nav { padding: 14px 24px; }
-    .hero, .place-hero-content, .place-story, .place-ig-link, .places-index, footer { padding-left: 24px; padding-right: 24px; }
-    .place-body { grid-template-columns: 1fr; }
-    .photo-gallery { grid-template-columns: repeat(2, 1fr); }
-    footer { flex-direction: column; gap: 32px; align-items: flex-start; }
-    .footer-right { text-align: left; }
+  /* DESKTOP */
+  @media (min-width: 768px) {
+    nav { padding: 16px 60px; }
+    .nav-logo img { height: 42px; width: 42px; }
+    .nav-dropdown-btn { font-size: 11px; padding: 8px 18px; }
+
+    .hero { padding: 60px; }
+    .hero-label { font-size: 11px; letter-spacing: 4px; margin-bottom: 24px; }
+    .hero-sub { font-size: 12px; letter-spacing: 2px; margin-top: 32px; }
+    .hero-scroll { right: 60px; bottom: 60px; }
+    .hero-scroll span { font-size: 10px; }
+    .scroll-line { height: 60px; }
+
+    .places-index { padding: 80px 60px; }
+    .section-label { font-size: 10px; margin-bottom: 40px; }
+    #index-grid { display: flex; flex-wrap: wrap; }
+    .index-item { flex: 1; min-width: 160px; padding: 28px 20px; position: relative; overflow: hidden; }
+    .index-item::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--warm); transform: scaleX(0); transition: transform 0.3s; }
+    .index-item:hover::before { transform: scaleX(1); }
+    .index-item:hover { background: var(--faint); }
+    .index-num { font-size: 10px; margin-bottom: 12px; }
+    .index-name { font-size: 22px; }
+    .index-region { font-size: 10px; margin-top: 8px; }
+
+    .place-hero { height: 65vh; max-height: none; }
+    .place-hero-content { padding: 60px; }
+    .place-tag { font-size: 10px; letter-spacing: 4px; margin-bottom: 16px; }
+    .place-coords { font-size: 11px; margin-top: 16px; }
+
+    .place-body { display: grid; grid-template-columns: 1fr 1fr; flex-direction: unset; }
+    .place-story { padding: 72px 60px; order: unset; }
+    .story-number { font-size: 64px; }
+    .story-title { font-size: 28px; margin-bottom: 20px; }
+    .story-text { font-size: 17px; max-width: 460px; }
+    .story-detail { margin-top: 36px; padding-top: 20px; gap: 36px; }
+    .detail-label { font-size: 9px; }
+    .detail-value { font-size: 14px; }
+
+    .photo-gallery { grid-template-columns: repeat(3, 1fr); gap: 3px; order: unset; }
+    .gallery-img { aspect-ratio: 4/3; }
+    .gallery-img img { opacity: 0.85; }
+    .gallery-img:hover img { transform: scale(1.04); opacity: 1; }
+    .gallery-img-caption { display: block; position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); font-family: 'Courier Prime', monospace; font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; }
+    .gallery-img:hover .gallery-img-caption { opacity: 1; }
+
+    .place-ig-link { padding: 20px 60px; order: unset; }
+    .ig-text { font-size: 11px; letter-spacing: 2px; }
+    .ig-link { font-size: 11px; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; transition: gap 0.3s; }
+    .ig-link:hover { gap: 14px; }
+
+    footer { padding: 80px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .footer-left { margin-bottom: 0; }
+    .footer-left h2 { font-size: 44px; margin-bottom: 16px; }
+    .footer-left p { font-size: 11px; }
+    .footer-ig { font-size: 20px; }
+    .footer-copy { font-size: 10px; }
+    .last-updated { font-size: 10px; margin-top: 8px; }
+    .footer-right { text-align: right; }
   }
 </style>
 </head>
@@ -166,7 +194,6 @@
 <div class="lightbox" id="lightbox">
   <span class="lightbox-close" id="lightboxClose">×</span>
   <img id="lightboxImg" src="" alt="">
-  <div class="lightbox-caption" id="lightboxCaption"></div>
 </div>
 
 <nav id="nav">
@@ -183,9 +210,11 @@
 
 <section class="hero">
   <div class="hero-bg"></div>
-  <p class="hero-label">@vascodevignette · A visual journey</p>
-  <h1 class="hero-title">Every place<br>has <em>a story.</em></h1>
-  <p class="hero-sub" id="heroSub">Loading places...</p>
+  <div class="hero-content">
+    <p class="hero-label">@vascodevignette · A visual journey</p>
+    <h1 class="hero-title">Every place<br>has <em>a story.</em></h1>
+    <p class="hero-sub" id="heroSub">Loading places...</p>
+  </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>scroll</span>
@@ -194,7 +223,7 @@
 
 <section class="places-index">
   <p class="section-label">— Places visited</p>
-  <div id="index-grid"><div class="loading">Loading places...</div></div>
+  <div id="index-grid"><div class="loading">Loading...</div></div>
 </section>
 
 <div id="places-container"></div>
@@ -212,173 +241,127 @@
 </footer>
 
 <script>
-  // ── Cursor ──────────────────────────────────────────────
+  // Cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    mx=e.clientX; my=e.clientY;
+    cursor.style.left=mx+'px'; cursor.style.top=my+'px';
   });
-  (function animRing() {
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
+  (function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
 
-  // ── Nav scroll ──────────────────────────────────────────
+  // Nav scroll
   const nav = document.getElementById('nav');
+  const btn = document.getElementById('navDropdownBtn');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > window.innerHeight * 0.8) {
-      nav.style.background = 'rgba(245,240,232,0.96)';
-      nav.style.backdropFilter = 'blur(8px)';
-      document.querySelector('.nav-dropdown-btn').style.borderColor = '#ccc';
-      document.querySelector('.nav-dropdown-btn').style.color = '#8a8070';
-    } else {
-      nav.style.background = 'transparent';
-      nav.style.backdropFilter = 'none';
-      document.querySelector('.nav-dropdown-btn').style.borderColor = 'rgba(255,255,255,0.15)';
-      document.querySelector('.nav-dropdown-btn').style.color = 'rgba(245,240,232,0.7)';
-    }
+    const past = window.scrollY > window.innerHeight * 0.8;
+    nav.style.background = past ? 'rgba(245,240,232,0.97)' : 'transparent';
+    nav.style.backdropFilter = past ? 'blur(8px)' : 'none';
+    btn.style.borderColor = past ? '#ccc' : 'rgba(255,255,255,0.2)';
+    btn.style.color = past ? '#8a8070' : 'rgba(245,240,232,0.8)';
   });
 
-  // ── Lightbox ────────────────────────────────────────────
+  // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxCaption = document.getElementById('lightboxCaption');
   document.getElementById('lightboxClose').onclick = () => lightbox.classList.remove('open');
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
-  function openLightbox(src, caption) {
-    lightboxImg.src = src;
-    lightboxCaption.textContent = caption || '';
-    lightbox.classList.add('open');
-  }
+  lightbox.addEventListener('click', e => { if(e.target===lightbox) lightbox.classList.remove('open'); });
 
-  // ── Scroll reveal ───────────────────────────────────────
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
+  // Reveal
+  const ro = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
 
-  // ── Build site from data.json ───────────────────────────
-  fetch('data.json')
-    .then(r => r.json())
-    .then(data => buildSite(data))
-    .catch(err => {
-      document.getElementById('index-grid').innerHTML = '<div class="error-msg">Could not load portfolio data. Please check data.json.</div>';
-      console.error(err);
-    });
+  // Load
+  fetch('data.json').then(r=>r.json()).then(buildSite).catch(err => {
+    document.getElementById('index-grid').innerHTML = '<div class="error-msg">Could not load data.json</div>';
+  });
 
   function buildSite(data) {
     const places = data.places || [];
+    const totalPhotos = places.reduce((s,p) => s+(p.photos||[]).length, 0);
 
-    // Hero subtitle
     document.getElementById('heroSub').textContent =
-      `${places.length} place${places.length !== 1 ? 's' : ''} · ${places.reduce((s,p) => s + (p.photos||[]).length, 0)} frames · Germany, 2025–2026`;
+      `${places.length} place${places.length!==1?'s':''} · ${totalPhotos} frames · Germany, 2025–2026`;
+    if(data.lastUpdated) document.getElementById('lastUpdated').textContent = 'Last updated · '+data.lastUpdated;
 
-    // Last updated
-    if (data.lastUpdated) {
-      document.getElementById('lastUpdated').textContent = 'Last updated · ' + data.lastUpdated;
-    }
-
-    // Dropdown nav
+    // Dropdown
     const navLinks = document.getElementById('navLinks');
     document.getElementById('navDropdownCount').textContent = `(${places.length})`;
-    navLinks.innerHTML = places.map((p, i) =>
-      `<li><a href="#place-${slug(p.name)}" onclick="document.getElementById('navLinks').classList.remove('open');document.getElementById('navDropdownBtn').classList.remove('open')">
-        <span>${p.name}</span>
-        <span class="item-num">${String(i+1).padStart(2,'0')}</span>
-      </a></li>`
-    ).join('');
+    navLinks.innerHTML = places.map((p,i) =>
+      `<li><a href="#place-${slug(p.name)}" onclick="closeDD()">
+        <span>${p.name}</span><span class="item-num">${String(i+1).padStart(2,'0')}</span>
+      </a></li>`).join('');
+    btn.addEventListener('click', e => { e.stopPropagation(); navLinks.classList.toggle('open'); btn.classList.toggle('open'); });
+    document.addEventListener('click', closeDD);
 
-    // Dropdown toggle
-    document.getElementById('navDropdownBtn').addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      document.getElementById('navDropdownBtn').classList.toggle('open');
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.nav-dropdown-wrap')) {
-        navLinks.classList.remove('open');
-        document.getElementById('navDropdownBtn').classList.remove('open');
-      }
-    });
-
-    // Index grid
-    const indexGrid = document.getElementById('index-grid');
-    indexGrid.innerHTML = places.map((p, i) => `
+    // Index
+    document.getElementById('index-grid').innerHTML = places.map((p,i) => `
       <a href="#place-${slug(p.name)}" class="index-item">
         <span class="index-num">${String(i+1).padStart(2,'0')}</span>
         <span class="index-name">${p.name}</span>
-        <span class="index-region">${p.region || ''}</span>
-      </a>
-    `).join('');
+        <span class="index-region">${p.region||''}</span>
+      </a>`).join('');
 
-    // Place sections
+    // Places
     const container = document.getElementById('places-container');
-    container.innerHTML = places.map((p, i) => buildPlace(p, i)).join('<div class="place-divider"></div>');
-
-    // Lightbox listeners
-    container.querySelectorAll('.gallery-img').forEach(el => {
-      el.addEventListener('click', () => openLightbox(el.dataset.src, el.dataset.caption));
-    });
-
-    // Reveal observer
-    container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    container.innerHTML = places.map((p,i)=>buildPlace(p,i)).join('<div class="place-divider"></div>');
+    container.querySelectorAll('.gallery-img').forEach(el => el.addEventListener('click', ()=>{ lightboxImg.src=el.dataset.src; lightbox.classList.add('open'); }));
+    container.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
   }
+
+  function closeDD() { document.getElementById('navLinks').classList.remove('open'); btn.classList.remove('open'); }
 
   function buildPlace(p, i) {
     const id = slug(p.name);
     const num = String(i+1).padStart(2,'0');
-    const heroImgStyle = p.heroPhoto ? `style="background-image: url('${p.heroPhoto}')"` : '';
-    const photos = (p.photos || []).slice(0, 9);
+    const photos = (p.photos||[]).slice(0,9);
 
     const galleryHTML = photos.length > 0
-      ? photos.map(ph => `
-          <div class="gallery-img" data-src="${ph.url}" data-caption="${ph.caption || p.name}">
-            <img src="${ph.url}" alt="${ph.caption || p.name}" loading="lazy">
-            <div class="gallery-img-caption">${ph.caption || ''}</div>
+      ? photos.map(ph=>`
+          <div class="gallery-img" data-src="${ph.url}">
+            <img src="${ph.url}" alt="${ph.caption||p.name}" loading="lazy">
+            <div class="gallery-img-caption">${ph.caption||''}</div>
           </div>`).join('')
-      : `<div class="gallery-placeholder"><span>Photos coming soon</span></div>`.repeat(3);
+      : '<div class="gallery-placeholder"><span>Coming soon</span></div>'.repeat(2);
 
     const storyHTML = `
       <div class="place-story reveal">
         <div class="story-number">${num}</div>
-        <h3 class="story-title">${p.storyTitle || p.name}</h3>
-        ${(p.story || ['No story yet.']).map(t => `<p class="story-text">${t}</p>`).join('')}
+        <h3 class="story-title">${p.storyTitle||p.name}</h3>
+        ${(p.story||['No story yet.']).map(t=>`<p class="story-text">${t}</p>`).join('')}
         <div class="story-detail">
-          ${p.camera ? `<div class="detail-item"><span class="detail-label">Shot on</span><span class="detail-value">${p.camera}</span></div>` : ''}
-          ${p.season ? `<div class="detail-item"><span class="detail-label">Season</span><span class="detail-value">${p.season}</span></div>` : ''}
-          ${p.theme ? `<div class="detail-item"><span class="detail-label">Theme</span><span class="detail-value">${p.theme}</span></div>` : ''}
+          ${p.camera?`<div class="detail-item"><span class="detail-label">Shot on</span><span class="detail-value">${p.camera}</span></div>`:''}
+          ${p.season?`<div class="detail-item"><span class="detail-label">Season</span><span class="detail-value">${p.season}</span></div>`:''}
+          ${p.theme?`<div class="detail-item"><span class="detail-label">Theme</span><span class="detail-value">${p.theme}</span></div>`:''}
         </div>
       </div>`;
 
-    const gallerySection = `<div class="photo-gallery">${galleryHTML}</div>`;
-    const storyRight = i % 2 === 0;
+    const gallery = `<div class="photo-gallery">${galleryHTML}</div>`;
+    const storyRight = i%2===0;
 
     return `
       <section class="place" id="place-${id}">
         <div class="place-hero">
           <div class="place-hero-bg-text">${p.name.substring(0,3).toUpperCase()}</div>
-          ${p.heroPhoto ? `<div class="place-hero-img" ${heroImgStyle}></div>` : ''}
+          ${p.heroPhoto?`<div class="place-hero-img" style="background-image:url('${p.heroPhoto}')"></div>`:''}
           <div class="place-hero-content">
-            <span class="place-tag">${num} / ${p.tagline || p.region || ''}</span>
-            <h2 class="place-name">${p.name}<br><em>${p.subtitle || ''}</em></h2>
-            <p class="place-coords">${p.coords || ''}</p>
+            <span class="place-tag">${num} / ${p.tagline||p.region||''}</span>
+            <h2 class="place-name">${p.name}<br><em>${p.subtitle||''}</em></h2>
+            <p class="place-coords">${p.coords||''}</p>
           </div>
         </div>
         <div class="place-body">
-          ${storyRight ? gallerySection + storyHTML : storyHTML + gallerySection}
+          ${storyRight ? gallery+storyHTML : storyHTML+gallery}
         </div>
-        ${p.instagramUrl ? `
+        ${p.instagramUrl?`
         <div class="place-ig-link">
           <span class="ig-text">View on Instagram</span>
           <a href="${p.instagramUrl}" target="_blank" class="ig-link">@vascodevignette →</a>
-        </div>` : ''}
+        </div>`:''}
       </section>`;
   }
 
-  function slug(str) {
-    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  }
+  function slug(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 </script>
 </body>
 </html>
