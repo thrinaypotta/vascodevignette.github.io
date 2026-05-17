@@ -23,12 +23,46 @@
   .cursor { position: fixed; width: 8px; height: 8px; background: var(--warm); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
   .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--warm); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.15s ease; opacity: 0.5; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 60px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; letter-spacing: 2px; color: #f5f0e8; text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 2px; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
-  .nav-links a:hover { color: var(--warm); }
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 60px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+  .nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .nav-logo img { height: 42px; width: 42px; border-radius: 50%; object-fit: cover; transition: opacity 0.3s; }
+  .nav-logo img:hover { opacity: 0.8; }
 
+  /* Dropdown */
+  .nav-dropdown-wrap { position: relative; }
+  .nav-dropdown-btn {
+    background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(245,240,232,0.7);
+    font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 8px 18px; cursor: pointer;
+    transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+  }
+  .nav-dropdown-btn:hover { border-color: var(--warm); color: var(--warm); }
+  .nav-dropdown-btn .arrow { transition: transform 0.2s; display: inline-block; }
+  .nav-dropdown-btn.open .arrow { transform: rotate(180deg); }
+  .nav-dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 8px); right: 0;
+    background: rgba(10,8,6,0.97); border: 1px solid #2a2520;
+    list-style: none; min-width: 220px; max-height: 70vh; overflow-y: auto;
+    backdrop-filter: blur(12px);
+  }
+  .nav-dropdown-menu.open { display: block; animation: fadeDown 0.2s ease; }
+  .nav-dropdown-menu li a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 13px 20px;
+    font-family: 'Courier Prime', monospace; font-size: 11px;
+    letter-spacing: 2px; color: var(--muted); text-decoration: none;
+    text-transform: uppercase; border-bottom: 1px solid #1a1714;
+    transition: all 0.2s;
+  }
+  .nav-dropdown-menu li:last-child a { border-bottom: none; }
+  .nav-dropdown-menu li a:hover { color: var(--warm); padding-left: 26px; background: #111; }
+  .nav-dropdown-menu li a .item-num { font-size: 9px; color: #333; }
+  .nav-dropdown-menu li a:hover .item-num { color: var(--warm); opacity: 0.5; }
+
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── HERO ── */
   .hero { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 60px; position: relative; background: var(--dark); overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, #2a1f0e 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, #0d1a2a 0%, transparent 50%), var(--dark); }
   .hero-label { font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 24px; opacity: 0; animation: fadeUp 1s 0.3s forwards; position: relative; }
@@ -39,6 +73,7 @@
   .hero-scroll span { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 3px; color: var(--muted); writing-mode: vertical-rl; text-transform: uppercase; }
   .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--warm), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 
+  /* ── INDEX ── */
   .places-index { padding: 80px 60px; background: var(--paper); border-bottom: 1px solid var(--faint); }
   .section-label { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 40px; }
   #index-grid { display: flex; flex-wrap: wrap; gap: 2px; }
@@ -50,6 +85,7 @@
   .index-name { font-size: 22px; font-weight: 300; color: var(--ink); display: block; line-height: 1.2; }
   .index-region { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--muted); display: block; margin-top: 8px; letter-spacing: 1px; }
 
+  /* ── PLACE SECTIONS ── */
   .place { min-height: 100vh; }
   .place-hero { height: 65vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; background: var(--dark); }
   .place-hero-bg-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 240px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.04); letter-spacing: -20px; user-select: none; line-height: 1; }
@@ -86,7 +122,7 @@
   .ig-link:hover { gap: 14px; }
   .place-divider { height: 2px; background: linear-gradient(to right, transparent, var(--warm), transparent); opacity: 0.25; }
 
-  /* Lightbox */
+  /* ── LIGHTBOX ── */
   .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; }
   .lightbox.open { display: flex; }
   .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
@@ -94,6 +130,7 @@
   .lightbox-close:hover { opacity: 1; }
   .lightbox-caption { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-family: 'Courier Prime', monospace; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
 
+  /* ── FOOTER ── */
   footer { background: var(--dark); padding: 80px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
   .footer-left h2 { font-size: 44px; font-weight: 300; color: #f5f0e8; font-style: italic; line-height: 1.1; margin-bottom: 16px; }
   .footer-left p { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); letter-spacing: 2px; }
@@ -112,8 +149,7 @@
   @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
+    nav { padding: 14px 24px; }
     .hero, .place-hero-content, .place-story, .place-ig-link, .places-index, footer { padding-left: 24px; padding-right: 24px; }
     .place-body { grid-template-columns: 1fr; }
     .photo-gallery { grid-template-columns: repeat(2, 1fr); }
@@ -135,9 +171,14 @@
 
 <nav id="nav">
   <a href="#" class="nav-logo">
-  <img src="logo.webp" alt="Vasco De Vignette" style="height:38px;width:38px;border-radius:50%;object-fit:cover;vertical-align:middle;">
-</a>
-  <ul class="nav-links" id="navLinks"></ul>
+    <img src="logo.webp" alt="Vasco De Vignette">
+  </a>
+  <div class="nav-dropdown-wrap">
+    <button class="nav-dropdown-btn" id="navDropdownBtn">
+      Places <span id="navDropdownCount"></span> <span class="arrow">▾</span>
+    </button>
+    <ul class="nav-dropdown-menu" id="navLinks"></ul>
+  </div>
 </nav>
 
 <section class="hero">
@@ -187,16 +228,17 @@
 
   // ── Nav scroll ──────────────────────────────────────────
   const nav = document.getElementById('nav');
-  const navLogo = nav.querySelector('.nav-logo');
   window.addEventListener('scroll', () => {
     if (window.scrollY > window.innerHeight * 0.8) {
       nav.style.background = 'rgba(245,240,232,0.96)';
       nav.style.backdropFilter = 'blur(8px)';
-      navLogo.style.color = '#1a1714';
+      document.querySelector('.nav-dropdown-btn').style.borderColor = '#ccc';
+      document.querySelector('.nav-dropdown-btn').style.color = '#8a8070';
     } else {
       nav.style.background = 'transparent';
       nav.style.backdropFilter = 'none';
-      navLogo.style.color = '#f5f0e8';
+      document.querySelector('.nav-dropdown-btn').style.borderColor = 'rgba(255,255,255,0.15)';
+      document.querySelector('.nav-dropdown-btn').style.color = 'rgba(245,240,232,0.7)';
     }
   });
 
@@ -238,11 +280,27 @@
       document.getElementById('lastUpdated').textContent = 'Last updated · ' + data.lastUpdated;
     }
 
-    // Nav links
+    // Dropdown nav
     const navLinks = document.getElementById('navLinks');
-    navLinks.innerHTML = places.map(p =>
-      `<li><a href="#place-${slug(p.name)}">${p.name}</a></li>`
+    document.getElementById('navDropdownCount').textContent = `(${places.length})`;
+    navLinks.innerHTML = places.map((p, i) =>
+      `<li><a href="#place-${slug(p.name)}" onclick="document.getElementById('navLinks').classList.remove('open');document.getElementById('navDropdownBtn').classList.remove('open')">
+        <span>${p.name}</span>
+        <span class="item-num">${String(i+1).padStart(2,'0')}</span>
+      </a></li>`
     ).join('');
+
+    // Dropdown toggle
+    document.getElementById('navDropdownBtn').addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      document.getElementById('navDropdownBtn').classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.nav-dropdown-wrap')) {
+        navLinks.classList.remove('open');
+        document.getElementById('navDropdownBtn').classList.remove('open');
+      }
+    });
 
     // Index grid
     const indexGrid = document.getElementById('index-grid');
@@ -258,11 +316,9 @@
     const container = document.getElementById('places-container');
     container.innerHTML = places.map((p, i) => buildPlace(p, i)).join('<div class="place-divider"></div>');
 
-    // Attach lightbox listeners
+    // Lightbox listeners
     container.querySelectorAll('.gallery-img').forEach(el => {
-      el.addEventListener('click', () => {
-        openLightbox(el.dataset.src, el.dataset.caption);
-      });
+      el.addEventListener('click', () => openLightbox(el.dataset.src, el.dataset.caption));
     });
 
     // Reveal observer
@@ -272,10 +328,9 @@
   function buildPlace(p, i) {
     const id = slug(p.name);
     const num = String(i+1).padStart(2,'0');
-    const heroImgStyle = p.heroPhoto
-      ? `style="background-image: url('${p.heroPhoto}')"` : '';
-
+    const heroImgStyle = p.heroPhoto ? `style="background-image: url('${p.heroPhoto}')"` : '';
     const photos = (p.photos || []).slice(0, 9);
+
     const galleryHTML = photos.length > 0
       ? photos.map(ph => `
           <div class="gallery-img" data-src="${ph.url}" data-caption="${ph.caption || p.name}">
@@ -283,8 +338,6 @@
             <div class="gallery-img-caption">${ph.caption || ''}</div>
           </div>`).join('')
       : `<div class="gallery-placeholder"><span>Photos coming soon</span></div>`.repeat(3);
-
-    const storyRight = i % 2 === 0;
 
     const storyHTML = `
       <div class="place-story reveal">
@@ -299,6 +352,7 @@
       </div>`;
 
     const gallerySection = `<div class="photo-gallery">${galleryHTML}</div>`;
+    const storyRight = i % 2 === 0;
 
     return `
       <section class="place" id="place-${id}">
