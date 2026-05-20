@@ -278,6 +278,7 @@
 
   function buildSite(data) {
     const places = data.places || [];
+    const reversed = places.slice().reverse();
     const totalPhotos = places.reduce((s,p) => s+(p.photos||[]).length, 0);
 
     document.getElementById('heroSub').textContent =
@@ -287,7 +288,7 @@
     // Dropdown
     const navLinks = document.getElementById('navLinks');
     document.getElementById('navDropdownCount').textContent = `(${places.length})`;
-    navLinks.innerHTML = places.map((p,i) =>
+    navLinks.innerHTML = reversed.map((p,i) =>
       `<li><a href="#place-${slug(p.name)}" onclick="closeDD()">
         <span>${p.name}</span><span class="item-num">${String(i+1).padStart(2,'0')}</span>
       </a></li>`).join('');
@@ -295,7 +296,7 @@
     document.addEventListener('click', closeDD);
 
     // Index
-    document.getElementById('index-grid').innerHTML = places.map((p,i) => `
+    document.getElementById('index-grid').innerHTML = reversed.map((p,i) => `
       <a href="#place-${slug(p.name)}" class="index-item">
         <span class="index-num">${String(i+1).padStart(2,'0')}</span>
         <span class="index-name">${p.name}</span>
@@ -304,7 +305,7 @@
 
     // Places
     const container = document.getElementById('places-container');
-    container.innerHTML = places.map((p,i)=>buildPlace(p,i)).join('<div class="place-divider"></div>');
+    container.innerHTML = reversed.map((p,i)=>buildPlace(p,i)).join('<div class="place-divider"></div>');
     container.querySelectorAll('.gallery-img').forEach(el => el.addEventListener('click', ()=>{ lightboxImg.src=el.dataset.src; lightbox.classList.add('open'); }));
     container.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
   }
