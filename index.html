@@ -32,37 +32,37 @@
   .nav-logo { text-decoration: none; }
   .nav-logo img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; display: block; }
   .nav-dropdown-wrap { position: relative; }
-  .nav-dropdown-btn { background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(245,240,232,0.8); font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 7px 14px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-  .nav-dropdown-btn .arrow { transition: transform 0.2s; font-size: 9px; }
+  .nav-dropdown-btn { background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(245,240,232,0.8); font-family: 'Courier Prime', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 7px 14px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .nav-dropdown-btn .arrow { transition: transform 0.2s; font-size: 11px; }
   .nav-dropdown-btn.open .arrow { transform: rotate(180deg); }
   .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); right: 0; background: rgba(10,8,6,0.98); border: 1px solid #2a2520; list-style: none; min-width: 200px; max-height: 60vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .nav-dropdown-menu.open { display: block; animation: fadeDown 0.2s ease; }
-  .nav-dropdown-menu li a { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 2px; color: var(--muted); text-decoration: none; text-transform: uppercase; border-bottom: 1px solid #1a1714; -webkit-tap-highlight-color: transparent; }
+  .nav-dropdown-menu li a { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; font-family: 'Courier Prime', monospace; font-size: 13px; letter-spacing: 2px; color: var(--muted); text-decoration: none; text-transform: uppercase; border-bottom: 1px solid #1a1714; -webkit-tap-highlight-color: transparent; }
   .nav-dropdown-menu li:last-child a { border-bottom: none; }
   .nav-dropdown-menu li a:active, .nav-dropdown-menu li a:hover { background: #1a1410; color: var(--warm); }
-  .item-num { font-size: 9px; color: #333; }
+  .item-num { font-size: 11px; color: #333; }
 
   /* HERO */
   .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 24px 44px; position: relative; background: var(--dark); overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, #2a1f0e 0%, transparent 55%), radial-gradient(ellipse at 80% 10%, #0d1a2a 0%, transparent 50%), var(--dark); }
   .hero-content { position: relative; z-index: 1; }
-  .hero-label { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; margin-bottom: 16px; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
-  .hero-title { font-size: clamp(42px, 12vw, 110px); font-weight: 300; color: #f5f0e8; line-height: 0.95; letter-spacing: -1px; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
+  .hero-label { font-family: 'Courier Prime', monospace; font-size: 12px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; margin-bottom: 16px; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
+  .hero-title { font-size: clamp(44px, 12vw, 112px); font-weight: 300; color: #f5f0e8; line-height: 0.95; letter-spacing: -1px; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
   .hero-title em { font-style: italic; color: var(--warm); }
-  .hero-sub { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-top: 20px; line-height: 1.6; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
+  .hero-sub { font-family: 'Courier Prime', monospace; font-size: 12px; color: var(--muted); letter-spacing: 1px; margin-top: 20px; line-height: 1.6; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
   .hero-scroll { position: absolute; right: 20px; bottom: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
-  .hero-scroll span { font-family: 'Courier Prime', monospace; font-size: 8px; letter-spacing: 3px; color: var(--muted); writing-mode: vertical-rl; text-transform: uppercase; }
+  .hero-scroll span { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 3px; color: var(--muted); writing-mode: vertical-rl; text-transform: uppercase; }
   .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--warm), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 
   /* INDEX */
   .places-index { padding: 40px 20px; background: var(--paper); border-bottom: 1px solid var(--faint); }
-  .section-label { font-family: 'Courier Prime', monospace; font-size: 9px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 20px; }
+  .section-label { font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 4px; color: var(--warm); text-transform: uppercase; margin-bottom: 20px; }
   #index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .index-item { padding: 18px 14px; border: 1px solid var(--faint); text-decoration: none; display: block; -webkit-tap-highlight-color: transparent; transition: background 0.2s; }
   .index-item:active { background: var(--faint); }
-  .index-num { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--warm); letter-spacing: 2px; display: block; margin-bottom: 8px; }
-  .index-name { font-size: 17px; font-weight: 300; color: var(--ink); display: block; line-height: 1.2; }
-  .index-region { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--muted); display: block; margin-top: 6px; letter-spacing: 0.5px; line-height: 1.4; }
+  .index-num { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--warm); letter-spacing: 2px; display: block; margin-bottom: 8px; }
+  .index-name { font-size: 19px; font-weight: 300; color: var(--ink); display: block; line-height: 1.2; }
+  .index-region { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); display: block; margin-top: 6px; letter-spacing: 0.5px; line-height: 1.4; }
 
   /* PLACE */
   .place { }
@@ -70,22 +70,22 @@
   .place-hero-bg-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: min(42vw, 200px); font-weight: 300; font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.04); letter-spacing: -8px; user-select: none; }
   .place-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.5; }
   .place-hero-content { position: relative; z-index: 2; padding: 20px 24px; width: 100%; }
-  .place-tag { font-family: 'Courier Prime', monospace; font-size: 9px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; display: block; margin-bottom: 8px; }
-  .place-name { font-size: clamp(28px, 7.5vw, 72px); font-weight: 300; color: #f5f0e8; line-height: 1; letter-spacing: -0.5px; }
+  .place-tag { font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .place-name { font-size: clamp(30px, 7.5vw, 74px); font-weight: 300; color: #f5f0e8; line-height: 1; letter-spacing: -0.5px; }
   .place-name em { font-style: italic; opacity: 0.6; }
-  .place-coords { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--muted); margin-top: 8px; letter-spacing: 1px; }
+  .place-coords { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); margin-top: 8px; letter-spacing: 1px; }
 
   /* Mobile: stacked layout, story first then photos */
   .place-body { display: flex; flex-direction: column; }
   .place-story { padding: 32px 24px; background: var(--paper); display: flex; flex-direction: column; order: 1; }
   .story-number { font-family: 'Courier Prime', monospace; font-size: 44px; color: var(--faint); line-height: 1; margin-bottom: -4px; }
-  .story-title { font-size: 21px; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 14px; line-height: 1.3; }
-  .story-text { font-size: 16px; font-weight: 300; line-height: 1.8; color: #3a3530; }
+  .story-title { font-size: 23px; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 14px; line-height: 1.3; }
+  .story-text { font-size: 18px; font-weight: 300; line-height: 1.8; color: #3a3530; }
   .story-text + .story-text { margin-top: 12px; }
   .story-detail { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--faint); display: flex; gap: 20px; flex-wrap: wrap; }
   .detail-item { display: flex; flex-direction: column; gap: 4px; }
-  .detail-label { font-family: 'Courier Prime', monospace; font-size: 8px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; }
-  .detail-value { font-size: 13px; font-weight: 300; color: var(--ink); }
+  .detail-label { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 3px; color: var(--warm); text-transform: uppercase; }
+  .detail-value { font-size: 15px; font-weight: 300; color: var(--ink); }
 
   .photo-gallery { background: #111; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; order: 2; }
   .gallery-img { aspect-ratio: 1/1; overflow: hidden; position: relative; background: #1a1a1a; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -93,11 +93,11 @@
   .gallery-img:active img { transform: scale(1.03); }
   .gallery-img-caption { display: none; }
   .gallery-placeholder { aspect-ratio: 1/1; background: linear-gradient(135deg, #1a1a2a, #2a1a1a); display: flex; align-items: center; justify-content: center; }
-  .gallery-placeholder span { font-family: 'Courier Prime', monospace; font-size: 9px; color: #333; letter-spacing: 2px; }
+  .gallery-placeholder span { font-family: 'Courier Prime', monospace; font-size: 11px; color: #333; letter-spacing: 2px; }
 
   .place-ig-link { padding: 14px 24px; background: var(--faint); display: flex; align-items: center; justify-content: space-between; order: 3; }
-  .ig-text { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1px; }
-  .ig-link { font-family: 'Courier Prime', monospace; font-size: 9px; color: var(--warm); letter-spacing: 1px; text-decoration: none; }
+  .ig-text { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+  .ig-link { font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--warm); letter-spacing: 1px; text-decoration: none; }
   .place-divider { height: 2px; background: linear-gradient(to right, transparent, var(--warm), transparent); opacity: 0.25; }
 
   /* LIGHTBOX */
@@ -109,14 +109,14 @@
   /* FOOTER */
   footer { background: var(--dark); padding: 44px 24px; }
   .footer-left { margin-bottom: 28px; }
-  .footer-left h2 { font-size: 32px; font-weight: 300; color: #f5f0e8; font-style: italic; line-height: 1.1; margin-bottom: 10px; }
-  .footer-left p { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--muted); letter-spacing: 2px; }
-  .footer-ig { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; color: var(--warm); text-decoration: none; display: block; margin-bottom: 6px; }
-  .footer-copy { font-family: 'Courier Prime', monospace; font-size: 9px; color: #3a3530; letter-spacing: 2px; }
-  .last-updated { font-family: 'Courier Prime', monospace; font-size: 9px; color: #2a2520; letter-spacing: 1px; margin-top: 6px; }
+  .footer-left h2 { font-size: 34px; font-weight: 300; color: #f5f0e8; font-style: italic; line-height: 1.1; margin-bottom: 10px; }
+  .footer-left p { font-family: 'Courier Prime', monospace; font-size: 12px; color: var(--muted); letter-spacing: 2px; }
+  .footer-ig { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: var(--warm); text-decoration: none; display: block; margin-bottom: 6px; }
+  .footer-copy { font-family: 'Courier Prime', monospace; font-size: 11px; color: #3a3530; letter-spacing: 2px; }
+  .last-updated { font-family: 'Courier Prime', monospace; font-size: 11px; color: #2a2520; letter-spacing: 1px; margin-top: 6px; }
 
-  .loading { text-align: center; padding: 60px 20px; font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--muted); letter-spacing: 3px; }
-  .error-msg { text-align: center; padding: 40px 20px; font-family: 'Courier Prime', monospace; font-size: 11px; color: #c96e6e; }
+  .loading { text-align: center; padding: 60px 20px; font-family: 'Courier Prime', monospace; font-size: 13px; color: var(--muted); letter-spacing: 3px; }
+  .error-msg { text-align: center; padding: 40px 20px; font-family: 'Courier Prime', monospace; font-size: 13px; color: #c96e6e; }
 
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -129,59 +129,59 @@
   @media (min-width: 768px) {
     nav { padding: 16px 60px; }
     .nav-logo img { height: 42px; width: 42px; }
-    .nav-dropdown-btn { font-size: 11px; padding: 8px 18px; }
+    .nav-dropdown-btn { font-size: 13px; padding: 8px 18px; }
 
     .hero { padding: 60px; }
-    .hero-label { font-size: 11px; letter-spacing: 4px; margin-bottom: 24px; }
-    .hero-sub { font-size: 12px; letter-spacing: 2px; margin-top: 32px; }
+    .hero-label { font-size: 13px; letter-spacing: 4px; margin-bottom: 24px; }
+    .hero-sub { font-size: 14px; letter-spacing: 2px; margin-top: 32px; }
     .hero-scroll { right: 60px; bottom: 60px; }
-    .hero-scroll span { font-size: 10px; }
+    .hero-scroll span { font-size: 12px; }
     .scroll-line { height: 60px; }
 
     .places-index { padding: 80px 60px; }
-    .section-label { font-size: 10px; margin-bottom: 40px; }
+    .section-label { font-size: 12px; margin-bottom: 40px; }
     #index-grid { display: flex; flex-wrap: wrap; }
     .index-item { flex: 1; min-width: 160px; padding: 28px 20px; position: relative; overflow: hidden; }
     .index-item::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--warm); transform: scaleX(0); transition: transform 0.3s; }
     .index-item:hover::before { transform: scaleX(1); }
     .index-item:hover { background: var(--faint); }
-    .index-num { font-size: 10px; margin-bottom: 12px; }
-    .index-name { font-size: 22px; }
-    .index-region { font-size: 10px; margin-top: 8px; }
+    .index-num { font-size: 12px; margin-bottom: 12px; }
+    .index-name { font-size: 24px; }
+    .index-region { font-size: 12px; margin-top: 8px; }
 
     .place-hero { height: 65vh; max-height: none; }
     .place-hero-content { padding: 60px; }
-    .place-tag { font-size: 10px; letter-spacing: 4px; margin-bottom: 16px; }
-    .place-coords { font-size: 11px; margin-top: 16px; }
+    .place-tag { font-size: 12px; letter-spacing: 4px; margin-bottom: 16px; }
+    .place-coords { font-size: 13px; margin-top: 16px; }
 
     .place-body { display: grid; grid-template-columns: 1fr 1fr; flex-direction: unset; }
     .place-story { padding: 72px 60px; order: unset; }
     .story-number { font-size: 64px; }
-    .story-title { font-size: 28px; margin-bottom: 20px; }
-    .story-text { font-size: 17px; max-width: 460px; }
+    .story-title { font-size: 30px; margin-bottom: 20px; }
+    .story-text { font-size: 19px; max-width: 460px; }
     .story-detail { margin-top: 36px; padding-top: 20px; gap: 36px; }
-    .detail-label { font-size: 9px; }
-    .detail-value { font-size: 14px; }
+    .detail-label { font-size: 11px; }
+    .detail-value { font-size: 16px; }
 
     .photo-gallery { grid-template-columns: repeat(3, 1fr); gap: 3px; order: unset; }
     .gallery-img { aspect-ratio: 4/3; }
     .gallery-img img { opacity: 0.85; }
     .gallery-img:hover img { transform: scale(1.04); opacity: 1; }
-    .gallery-img-caption { display: block; position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); font-family: 'Courier Prime', monospace; font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; }
+    .gallery-img-caption { display: block; position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); font-family: 'Courier Prime', monospace; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; }
     .gallery-img:hover .gallery-img-caption { opacity: 1; }
 
     .place-ig-link { padding: 20px 60px; order: unset; }
-    .ig-text { font-size: 11px; letter-spacing: 2px; }
-    .ig-link { font-size: 11px; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; transition: gap 0.3s; }
+    .ig-text { font-size: 13px; letter-spacing: 2px; }
+    .ig-link { font-size: 13px; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; transition: gap 0.3s; }
     .ig-link:hover { gap: 14px; }
 
     footer { padding: 80px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
     .footer-left { margin-bottom: 0; }
-    .footer-left h2 { font-size: 44px; margin-bottom: 16px; }
-    .footer-left p { font-size: 11px; }
-    .footer-ig { font-size: 20px; }
-    .footer-copy { font-size: 10px; }
-    .last-updated { font-size: 10px; margin-top: 8px; }
+    .footer-left h2 { font-size: 46px; margin-bottom: 16px; }
+    .footer-left p { font-size: 13px; }
+    .footer-ig { font-size: 22px; }
+    .footer-copy { font-size: 12px; }
+    .last-updated { font-size: 12px; margin-top: 8px; }
     .footer-right { text-align: right; }
   }
 </style>
